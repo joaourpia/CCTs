@@ -1,0 +1,1 @@
+clausulas_farmaceuticos.csv
