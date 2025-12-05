@@ -1,45 +1,52 @@
 import os
 from git import Repo
 from datetime import datetime
+import sys
 
 # --- CONFIGURAÇÕES ---
-# Caminho da pasta onde está o seu projeto no computador
-CAMINHO_PROJETO = r"C:\Python\CCTs" 
-ARQUIVO_CSV = "CCTs_Extraidas.csv"
+CAMINHO_PROJETO = r"C:\Python\CCTs"
+# Nota: O script agora pega TUDO, não precisa especificar o CSV
 
 def atualizar_projeto():
     try:
-        print(f"🔄 Iniciando atualização do projeto em: {CAMINHO_PROJETO}")
-        
-        # Inicializa o repositório
+        print(f"🔄 Acessando repositório em: {CAMINHO_PROJETO}")
         repo = Repo(CAMINHO_PROJETO)
-        
-        # Verifica se há mudanças no git
+        origin = repo.remote(name='origin')
+
+        # 1. GARANTIA: Baixar atualizações do GitHub antes de qualquer coisa
+        print("⬇️  Baixando atualizações remotas (Pull)...")
+        try:
+            origin.pull()
+            print("✅ Sincronização concluída.")
+        except Exception as e:
+            print(f"⚠️ Aviso no Pull (pode ser ignorado se for o primeiro uso): {e}")
+
+        # 2. Verificar mudanças locais
         if not repo.is_dirty(untracked_files=True):
-            print("✅ Nenhuma alteração encontrada. O arquivo CSV não foi modificado?")
+            print("✅ Nenhuma alteração encontrada para enviar.")
             return
 
-        # 1. Adicionar TODOS os arquivos modificados (app.py, csv, imagens, etc)
-        print("📂 Adicionando todos os arquivos modificados...")
+        # 3. Adicionar TODOS os arquivos (app.py, csv, imagens)
+        print("📂 Adicionando arquivos modificados...")
         repo.git.add(all=True)
 
-        # 2. Criar o commit
+        # 4. Criar o commit
         data_hoje = datetime.now().strftime("%d/%m/%Y %H:%M")
-        mensagem = f"Atualização automática CCTs - {data_hoje}"
+        mensagem = f"Atualização automática - {data_hoje}"
         repo.index.commit(mensagem)
         print(f"📝 Commit criado: {mensagem}")
 
-        # 3. Enviar para o GitHub (Push)
-        print("🚀 Enviando para o GitHub...")
-        origin = repo.remote(name='origin')
+        # 5. Enviar para o GitHub
+        print("🚀 Enviando para o GitHub (Push)...")
         origin.push()
         
-        print("\n✅ SUCESSO! O projeto foi atualizado.")
-        print("⏳ O Streamlit Cloud deve processar a mudança em alguns minutos.")
+        print("\n✅ SUCESSO TOTAL! O projeto foi atualizado.")
+        print("⏳ Aguarde o processamento no Streamlit Cloud.")
 
     except Exception as e:
-        print(f"\n❌ ERRO: {e}")
-        print("Dica: Verifique se suas credenciais do Git estão configuradas corretamente no Windows/Mac.")
+        print("\n❌ ERRO CRÍTICO:")
+        print(e)
+        print("\nSUGESTÃO: Se o erro for de 'refs', tente rodar 'git pull origin main' manualmente no CMD.")
 
 if __name__ == "__main__":
     atualizar_projeto()
