@@ -1,0 +1,15 @@
+pymupdf
+# Dependências do Extrator de CCTs
+# Instalação: pip install -r requirements.txt
+
+# Extração de texto de PDFs
+pdfplumber>=0.11.0
+
+# API OpenAI para geração de resumos com IA
+openai>=1.0.0
+
+# Dependências opcionais (já incluídas no Python)
+# - csv (built-in)
+# - re (built-in)
+# - argparse (built-in)
+# - pathlib (built-in)

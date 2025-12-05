@@ -1,0 +1,50 @@
+═══════════════════════════════════════════════════════════════
+  EXTRATOR DE CCTs v4.0 - INSTRUÇÕES RÁPIDAS
+═══════════════════════════════════════════════════════════════
+
+✅ CORREÇÕES APLICADAS:
+
+1. Janela de sindicato agora cabe na tela (botão visível)
+2. Campo de edição manual presente
+3. Barra de progresso incluída (barra_progresso.py)
+
+───────────────────────────────────────────────────────────────
+
+📦 ARQUIVOS INCLUÍDOS:
+
+1. extrator_cct_standalone.py  ← Script principal CORRIGIDO
+2. barra_progresso.py          ← Classe de barra de progresso
+3. build_exe.py                ← Script para gerar .exe
+4. requirements.txt            ← Dependências
+5. CCTs_Extraidas_EXEMPLO.csv  ← Exemplo de planilha mãe
+
+───────────────────────────────────────────────────────────────
+
+🚀 COMO USAR:
+
+1. Extraia o ZIP
+2. Substitua o arquivo extrator_cct_standalone.py
+3. Gere novo executável:
+   
+   python build_exe.py
+
+4. Execute:
+   
+   dist\ExtratorCCT.exe
+
+───────────────────────────────────────────────────────────────
+
+⚠️ IMPORTANTE:
+
+- A janela de sindicato agora tem altura 500px (antes 600px)
+- O botão "Confirmar" agora aparece na tela
+- O campo de edição manual está presente
+
+───────────────────────────────────────────────────────────────
+
+📝 PRÓXIMOS PASSOS (se quiser barra de progresso e integração):
+
+Esses recursos requerem modificações mais extensas no código.
+Solicite em nova sessão se precisar.
+
+═══════════════════════════════════════════════════════════════

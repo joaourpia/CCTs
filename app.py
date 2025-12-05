@@ -44,7 +44,7 @@ st.markdown(
 # -------------------------------------------------
 # (O restante do seu código permanece inalterado)
 # Carregue a base
-df = pd.read_csv("clausulas_farmaceuticos.csv", encoding="utf-8")
+df = pd.read_csv("CCTs_Extraidas.csv", encoding="utf-8")
 # CONFIRA essas variáveis com os nomes certos do seu csv!
 col_sindicato = "Sindicato"
 col_cct = "Convenção"         # ajuste conforme seu arquivo ("Convenção", "Acordo", etc)
